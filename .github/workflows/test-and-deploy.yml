@@ -1,76 +1,3 @@
-# name: Test and deploy
-
-# on:
-#   push:
-#     branches:
-#       - master
-
-# jobs:
-#   test:
-#     name: Run Lint and Test
-#     runs-on: ubuntu-latest
-
-#     steps:
-#       - name: Checkout repo
-#         uses: actions/checkout@v4
-
-#       - name: Setup Node
-#         uses: actions/setup-node@v4
-
-#       - name: Install pnpm 
-#         run: npm install -g pnpm
-
-#       - name: Install dependencies
-#         run: pnpm install --frozen-lockfile
-      
-#       - name: Build hooks
-#         run: npm run build-hooks
-
-#       - name: Run tests
-#         run: npm run test
-
-#   build:
-#     name: Build docs
-#     runs-on: ubuntu-latest
-#     needs: test
-
-#     steps:
-#       - name: Checkout repo
-#         uses: actions/checkout@v4
-
-#       - name: Setup Node
-#         uses: actions/setup-node@v4
-
-#       - name: Install pnpm
-#         run: npm install -g pnpm
-
-#       - name: Install dependencies
-#         run: pnpm install --frozen-lockfile
-
-#       - name: Build docs
-#         run: npm run docs:build
-
-#       - name: Upload docs
-#         uses: actions/upload-artifact@v4
-#         with:
-#           name: docs
-#           path: ./packages/docs/.vitepress/dist
-
-#   deploy:
-#     name: Deploy to GitHub Pages
-#     runs-on: ubuntu-latest
-#     needs: build
-#     steps:
-#       - name: Download docs
-#         uses: actions/download-artifact@v4
-#         with:
-#           name: docs
-
-#       - name: Deploy to GitHub Pages
-#         uses: peaceiris/actions-gh-pages@v4
-#         with:
-#           github_token: ${{ secrets.GH_TOKEN }}
-#           publish_dir: .
 name: Test and deploy
 
 on:
@@ -89,10 +16,8 @@ jobs:
 
       - name: Setup Node
         uses: actions/setup-node@v4
-        with:
-          node-version: 20  # 明确指定 Node 版本
 
-      - name: Install pnpm
+      - name: Install pnpm 
         run: npm install -g pnpm
 
       - name: Install dependencies
@@ -115,8 +40,6 @@ jobs:
 
       - name: Setup Node
         uses: actions/setup-node@v4
-        with:
-          node-version: 20
 
       - name: Install pnpm
         run: npm install -g pnpm
@@ -131,7 +54,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: docs
-          path: ./packages/docs/.vitepress/dist  # 确认此路径存在！
+          path: ./packages/docs/.vitepress/dist
 
   deploy:
     name: Deploy to GitHub Pages
@@ -142,10 +65,87 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: docs
-          path: ./docs  # 明确下载到 ./docs 目录
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}  # 使用内置 Token
+          github_token: ${{ secrets.GH_TOKEN }}
           publish_dir: .
+# name: Test and deploy
+
+# on:
+#   push:
+#     branches:
+#       - master
+
+# jobs:
+#   test:
+#     name: Run Lint and Test
+#     runs-on: ubuntu-latest
+
+#     steps:
+#       - name: Checkout repo
+#         uses: actions/checkout@v4
+
+#       - name: Setup Node
+#         uses: actions/setup-node@v4
+#         with:
+#           node-version: 20  # 明确指定 Node 版本
+
+#       - name: Install pnpm
+#         run: npm install -g pnpm
+
+#       - name: Install dependencies
+#         run: pnpm install --frozen-lockfile
+      
+#       - name: Build hooks
+#         run: npm run build-hooks
+
+#       - name: Run tests
+#         run: npm run test
+
+#   build:
+#     name: Build docs
+#     runs-on: ubuntu-latest
+#     needs: test
+
+#     steps:
+#       - name: Checkout repo
+#         uses: actions/checkout@v4
+
+#       - name: Setup Node
+#         uses: actions/setup-node@v4
+#         with:
+#           node-version: 20
+
+#       - name: Install pnpm
+#         run: npm install -g pnpm
+
+#       - name: Install dependencies
+#         run: pnpm install --frozen-lockfile
+
+#       - name: Build docs
+#         run: npm run docs:build
+
+#       - name: Upload docs
+#         uses: actions/upload-artifact@v4
+#         with:
+#           name: docs
+#           path: ./packages/docs/.vitepress/dist  # 确认此路径存在！
+
+#   deploy:
+#     name: Deploy to GitHub Pages
+#     runs-on: ubuntu-latest
+#     needs: build
+#     steps:
+#       - name: Download docs
+#         uses: actions/download-artifact@v4
+#         with:
+#           name: docs
+#           path: ./docs  # 明确下载到 ./docs 目录
+
+#       - name: Deploy to GitHub Pages
+#         uses: peaceiris/actions-gh-pages@v4
+#         with:
+#           github_token: ${{ secrets.GITHUB_TOKEN }}  # 使用内置 Token
+#           publish_dir: .
