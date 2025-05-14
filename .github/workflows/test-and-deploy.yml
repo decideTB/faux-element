@@ -148,4 +148,4 @@ jobs:
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}  # 使用内置 Token
-          publish_dir: ./docs  # 指向下载的目录
+          publish_dir: .
