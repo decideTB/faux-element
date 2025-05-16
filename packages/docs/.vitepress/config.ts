@@ -8,7 +8,7 @@ import { link } from "fs";
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   title: "faux-element",
-  description: "基于Vue3 高仿 element-ui 组件库",
+  description: "一个基于Vue3的通用组件库",
   appearance: false, // 关闭 darkMode @todo 深色模式完成后打开
   base: "/faux-element/", // 部署到github时需要设置
   themeConfig: {
@@ -16,7 +16,6 @@ export default defineConfig({
     nav: [
       { text: "开始使用", link: "/get-started" },
       { text: "组件", link: "/components/button" },
-      {text:"社区",link:"/"}
     ],
     search: {
       provider: "local",
@@ -56,10 +55,12 @@ export default defineConfig({
       // },
     ],
 
-    socialLinks: [
-      { icon: "github", link: "https://github.com/EricWXY/eric-ui" },
-    ],
+    // socialLinks: [
+    //   { icon: "github", link: "https://github.com/decideTB/faux-element" },
+    // ],
   },
+
+  //引入了 @vitepress-demo-preview/plugin 插件的两个模块，创建容器和markdown嵌入组件
   markdown: {
     config(md) {
       md.use(containerPreview);
